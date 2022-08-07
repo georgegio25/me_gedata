@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Providers</title>
+  </head>
+  <body>
+    <h1>Hi {{user.first_name}} {{user.last_name}} !</h1>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Log out</a>
+    <br />
+    <br />
+
+    <h2>My providers:</h2>
+    <br />
+    <table>
+      <thead>
+        <tr>
+          <td>Provider</td>
+          <td>Specialty</td>
+          <td>Billing party</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for provider in all_providers %}
+        <tr>
+          <td>
+            <h2>{{provider.name}}</h2>
+            phone 1: {{provider.phone1}} phone 2: {{provider.phone2}}
+            <p>phone 3: {{provider.phone3}}</p>
+            <p>fax: {{provider.fax}} email: {{provider.email}}</p>
+          </td>
+          <td>
+            <h4>{{provider.practice}}</h4>
+          </td>
+          <td>
+            <h2>
+              {{provider.biller.name}} / {{provider.biller.contact_person}}
+            </h2>
+            phone 1: {{provider.biller.phone1}} phone 2:
+            {{provider.biller.phone2}}
+            <p>phone 3: {{provider.biller.phone3}}</p>
+            <p>fax: {{provider.biller.fax}} email: {{provider.biller.email}}</p>
+          </td>
+          <td>
+            <h4>{{provider.biller.comments}}</h4>
+          </td>
+          {% endfor %}
+        </tr>
+        <tr>
+          {% for billing_party in billing_parties %}
+          <td>
+            <h2>{{billing_party.name}}</h2>
+            phone 1: {{provider.phone1}} phone 2: {{provider.phone2}} phone 3:
+            {{provider.phone3}}
+            <p>fax: {{provider.fax}} email: {{provider.email}}</p>
+          </td>
+          <td>
+            <h4>{{provider.practice}}</h4>
+          </td>
+
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
